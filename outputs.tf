@@ -29,3 +29,8 @@ output "RT-Associate2" {
   value = aws_route_table_association.terraform_associate2.id
 
 }
+
+output "addedroutes" {
+  value = aws_route_table.terraform_RT.route
+  
+}
