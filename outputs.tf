@@ -34,3 +34,13 @@ output "addedroutes" {
   value = aws_route_table.terraform_RT.route
   
 }
+
+output "ec2-1-ip" {
+  value = aws_instance.ec2-1.public_ip
+  
+}
+
+output "ec2-2-ip" {
+  value = aws_instance.ec2-2.public_ip
+  
+}

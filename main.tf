@@ -52,15 +52,9 @@ resource "aws_subnet" "terraform_s2" {
 resource "aws_route_table" "terraform_RT" {
   vpc_id = aws_vpc.terraform_vpc.id
 
-
   route {
-    cidr_block = "10.0.0.0/16"
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.terraform_igw.id
-  }
-
-  route {
-    cidr_block             = "0.0.0.0/0"
-    egress_only_gateway_id = aws_internet_gateway.terraform_igw.id
   }
 
   tags = {
@@ -87,6 +81,7 @@ resource "aws_instance" "ec2-1" {
   instance_type        = "t3.small"
   iam_instance_profile = "ec2-ssm"
   subnet_id            = aws_subnet.terraform_s1.id
+  associate_public_ip_address = true
 
   tags = {
     Name = "firstinstance"
@@ -101,6 +96,7 @@ resource "aws_instance" "ec2-2" {
   instance_type        = "t3.small"
   iam_instance_profile = "ec2-ssm"
   subnet_id            = aws_subnet.terraform_s2.id
+  associate_public_ip_address = true
 
   tags = {
     Name = "secondinstance"
