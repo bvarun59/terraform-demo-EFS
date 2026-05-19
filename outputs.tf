@@ -21,11 +21,11 @@ output "RouteTable" {
 }
 
 output "RT-Associates1" {
-  value = aws_route_table_association.terraform_associate1.subnet_id.id
+  value = aws_route_table_association.terraform_associate1.id
 
 }
 
 output "RT-Associate2" {
-  value = aws_route_table_association.terraform_associate2.subnet_id.id
+  value = aws_route_table_association.terraform_associate2.id
 
 }
