@@ -45,5 +45,37 @@ resource "aws_subnet" "terraform_s2" {
   }
 }
 
-#Create a Public Route Table and add routes and Associate Public subnet
+#Create a Public Route Table for above vpc id and add routes
+
+resource "aws_route_table" "terraform_RT" {
+    vpc_id = aws_vpc.terraform_vpc.id
+    
+
+  route {
+    cidr_block = "10.0.0.0/16"
+    gateway_id = aws_internet_gateway.terraform_igw.id
+  }
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    egress_only_gateway_id = aws_internet_gateway.terraform_igw.id
+  }
+
+  tags = {
+    Name = "tRT"
+  }
+}
+#Associate public subnet 1 to Publi#Asc RouteTable
+resource "aws_route_table_association" "terraform_associate1" {
+  subnet_id      = aws_subnet.terraform_s1.id
+  route_table_id = aws_route_table.terraform_RT.id
+}
+
+#Associate public subnet 1 to Publi#Asc RouteTable
+resource "aws_route_table_association" "terraform_associate2" {
+  subnet_id      = aws_subnet.terraform_s2.id
+  route_table_id = aws_route_table.terraform_RT.id
+}
+
+
 
