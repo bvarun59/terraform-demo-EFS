@@ -1,0 +1,1 @@
+this terraform project creating EFS and within a VPC and testing bewttn 2 ec2 in public subnet
