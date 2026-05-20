@@ -1,46 +1,45 @@
 output "vpcname" {
-  value = aws_vpc.terraform_vpc.id
+  value = module.vpccreation.vpcname
 }
 
 output "subnet1" {
-  value = aws_subnet.terraform_s1.cidr_block
+  value = module.vpccreation.subnet1
 }
 
 output "subnet2" {
-  value = aws_subnet.terraform_s2.cidr_block
+  value = module.vpccreation.subnet2
 
 }
 
 output "internetgatway" {
-  value = aws_internet_gateway.terraform_igw.id
+  value = module.vpccreation.internetgatway
 }
 
 output "RouteTable" {
-  value = aws_route_table.terraform_RT.id
-
+  value = module.vpccreation.RouteTable
 }
 
 output "RT-Associates1" {
-  value = aws_route_table_association.terraform_associate1.id
+  value = module.vpccreation.RT-Associates1
 
 }
 
 output "RT-Associate2" {
-  value = aws_route_table_association.terraform_associate2.id
+  value = module.vpccreation.RT-Associate2
 
 }
 
 output "addedroutes" {
-  value = aws_route_table.terraform_RT.route
-  
+  value = module.vpccreation.addedroutes
+
 }
 
-output "ec2-1-ip" {
-  value = aws_instance.ec2-1.public_ip
-  
+output "ec2Creation1" {
+  value = module.ec2Creation1.moutputpublicip
+
 }
 
-output "ec2-2-ip" {
-  value = aws_instance.ec2-2.public_ip
-  
+output "ec2Creation2" {
+  value = module.ec2Creation2.moutputpublicip
+
 }

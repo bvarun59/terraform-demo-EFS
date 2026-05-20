@@ -1,0 +1,11 @@
+variable "mvpccidr" {}
+variable "mvpcname" {}
+variable "migw" {}
+variable "ms1cidr" {}
+variable "ms1az" {}
+variable "ms1name" {}
+variable "ms2cidr" {}
+variable "ms2az" {}
+variable "ms2name" {}
+variable "mRT" {}
+variable "mRTallowpublic" {}

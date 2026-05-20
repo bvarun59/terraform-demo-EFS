@@ -1,107 +1,43 @@
-#Provider of cloud
-provider "aws" {
-  region = "ap-south-1"
-}
-
-# create a VPC with cidr block
-resource "aws_vpc" "terraform_vpc" {
-  cidr_block = "10.0.0.0/16"
-
-  tags = {
-    Name = "tvpc"
-  }
-}
-
-#Create a internetgateway and attch to above vpc id
-resource "aws_internet_gateway" "terraform_igw" {
-
-  vpc_id = aws_vpc.terraform_vpc.id
-
-  tags = {
-    Name = "tigw"
-  }
-
-}
-
-#Create a Public Subnet 1
-
-resource "aws_subnet" "terraform_s1" {
-  vpc_id            = aws_vpc.terraform_vpc.id
-  cidr_block        = "10.0.1.0/24"
-  availability_zone = "ap-south-1a"
-
-  tags = {
-    Name = "Public-Subnet-1"
-  }
-}
-
-#Create a Public Subnet 2
-
-resource "aws_subnet" "terraform_s2" {
-  vpc_id            = aws_vpc.terraform_vpc.id
-  cidr_block        = "10.0.3.0/24"
-  availability_zone = "ap-south-1b"
-
-  tags = {
-    Name = "Public-Subnet-2"
-  }
-}
-
-#Create a Public Route Table for above vpc id and add routes
-
-resource "aws_route_table" "terraform_RT" {
-  vpc_id = aws_vpc.terraform_vpc.id
-
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.terraform_igw.id
-  }
-
-  tags = {
-    Name = "tRT"
-  }
-}
-#Associate public subnet 1 to Publi#Asc RouteTable
-resource "aws_route_table_association" "terraform_associate1" {
-  subnet_id      = aws_subnet.terraform_s1.id
-  route_table_id = aws_route_table.terraform_RT.id
-}
-
-#Associate public subnet 1 to Publi#Asc RouteTable
-resource "aws_route_table_association" "terraform_associate2" {
-  subnet_id      = aws_subnet.terraform_s2.id
-  route_table_id = aws_route_table.terraform_RT.id
+# VPC Network creation
+module "vpccreation" {
+  source         = "./modules/vpc"
+  mvpccidr       = var.gvpccidr
+  mvpcname       = var.gvpcname
+  migw           = var.gigw
+  ms1cidr        = var.gs1cidr
+  ms1az          = var.gs1az
+  ms1name        = var.gs1name
+  ms2cidr        = var.gs2cidr
+  ms2az          = var.gs2az
+  ms2name        = var.gs2name
+  mRT            = var.gRT
+  mRTallowpublic = var.gRTallowpublic
 }
 
 
-# Create a EC2 instance in Public subnet 1
+#Create instances in VPC
 
-resource "aws_instance" "ec2-1" {
-  ami                  = "ami-09ed39e30153c3bf9"
-  instance_type        = "t3.small"
-  iam_instance_profile = "ec2-ssm"
-  subnet_id            = aws_subnet.terraform_s1.id
-  associate_public_ip_address = true
-
-  tags = {
-    Name = "firstinstance"
-  }
+module "ec2Creation1" {
+  source       = "./modules/ec2"
+  mamiid       = var.gamiid
+  minstatype   = var.ginstatype
+  miamprofile  = var.giamprofile
+  subnet_id    = module.vpccreation.subnet1id
+  instancename = "firstserver"
 
 }
 
-# Create a EC2 instance in Public subnet 1
 
-resource "aws_instance" "ec2-2" {
-  ami                  = "ami-09ed39e30153c3bf9"
-  instance_type        = "t3.small"
-  iam_instance_profile = "ec2-ssm"
-  subnet_id            = aws_subnet.terraform_s2.id
-  associate_public_ip_address = true
+module "ec2Creation2" {
+  source       = "./modules/ec2"
+  mamiid       = var.gamiid
+  minstatype   = var.ginstatype
+  miamprofile  = var.giamprofile
+  subnet_id    = module.vpccreation.subnet2id
+  instancename = "secondserver"
 
-  tags = {
-    Name = "secondinstance"
-  }
 }
+
 
 
 
