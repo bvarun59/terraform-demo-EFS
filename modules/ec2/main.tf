@@ -1,7 +1,7 @@
 # Create a EC2 instance in Public subnet 1
 
 resource "aws_security_group" "EFSSG" {
-  vpc_id = var.subnet_id
+  vpc_id = var.vpc_id
 
   tags = {
     Name = "EFSsecuritygroup"

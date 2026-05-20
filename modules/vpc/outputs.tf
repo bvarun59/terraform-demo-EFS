@@ -2,6 +2,11 @@ output "vpcname" {
   value = aws_vpc.terraform_vpc.id
 }
 
+output "vpc_id" {
+  value = aws_vpc.terraform_vpc.id
+  
+}
+
 output "subnet1" {
   value = aws_subnet.terraform_s1.cidr_block
 }

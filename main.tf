@@ -24,6 +24,7 @@ module "ec2Creation1" {
   miamprofile  = var.giamprofile
   subnet_id    = module.vpccreation.subnet1id
   instancename = "firstserver"
+  vpc_id = module.vpccreation.vpc_id
 
 }
 
@@ -35,6 +36,7 @@ module "ec2Creation2" {
   miamprofile  = var.giamprofile
   subnet_id    = module.vpccreation.subnet2id
   instancename = "secondserver"
+  vpc_id = module.vpccreation.vpc_id
 
 }
 

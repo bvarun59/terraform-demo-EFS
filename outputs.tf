@@ -2,6 +2,11 @@ output "vpcname" {
   value = module.vpccreation.vpcname
 }
 
+output "vpc_id" {
+  value = module.vpccreation.vpcname.id
+  
+}
+
 output "subnet1" {
   value = module.vpccreation.subnet1
 }
