@@ -2,9 +2,10 @@
 
 resource "aws_security_group" "EFSSG" {
   vpc_id = var.vpc_id
+  name = var.EFSsecuritygroup
 
   tags = {
-    Name = "EFSsecuritygroup"
+    Name = var.EFSsecuritygroup
   }
  }
 
@@ -13,7 +14,7 @@ resource "aws_security_group_rule" "ingressrule" {
   type              = "ingress"
   from_port         = 80
   to_port           = 80
-  protocol          = "http"
+  protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.EFSSG.id
 }
@@ -34,6 +35,8 @@ resource "aws_instance" "ec2" {
   iam_instance_profile = var.miamprofile
   subnet_id            = var.subnet_id
   associate_public_ip_address = true
+  vpc_security_group_ids = [aws_security_group.EFSSG.id]
+  #security_groups = [aws_security_group.EFSSG.id]
 
   tags = {
     Name = var.instancename

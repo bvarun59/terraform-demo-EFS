@@ -4,3 +4,4 @@ variable "miamprofile" {}
 variable "instancename" {}
 variable "subnet_id" {}
 variable "vpc_id" {}
+variable "EFSsecuritygroup" {}

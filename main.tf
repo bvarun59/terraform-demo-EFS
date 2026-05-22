@@ -18,25 +18,26 @@ module "vpccreation" {
 #Create instances in VPC
 
 module "ec2Creation1" {
-  source       = "./modules/ec2"
-  mamiid       = var.gamiid
-  minstatype   = var.ginstatype
-  miamprofile  = var.giamprofile
-  subnet_id    = module.vpccreation.subnet1id
-  instancename = "firstserver"
-  vpc_id       = module.vpccreation.vpc_id
-
+  source           = "./modules/ec2"
+  mamiid           = var.gamiid
+  minstatype       = var.ginstatype
+  miamprofile      = var.giamprofile
+  subnet_id        = module.vpccreation.subnet1id
+  instancename     = "firstserver"
+  vpc_id           = module.vpccreation.vpc_id
+  EFSsecuritygroup = "ec21"
 }
 
 
 module "ec2Creation2" {
-  source       = "./modules/ec2"
-  mamiid       = var.gamiid
-  minstatype   = var.ginstatype
-  miamprofile  = var.giamprofile
-  subnet_id    = module.vpccreation.subnet2id
-  instancename = "secondserver"
-  vpc_id       = module.vpccreation.vpc_id
+  source           = "./modules/ec2"
+  mamiid           = var.gamiid
+  minstatype       = var.ginstatype
+  miamprofile      = var.giamprofile
+  subnet_id        = module.vpccreation.subnet2id
+  instancename     = "secondserver"
+  vpc_id           = module.vpccreation.vpc_id
+  EFSsecuritygroup = "ec22"
 
 }
 
