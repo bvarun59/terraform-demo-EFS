@@ -3,7 +3,7 @@ output "vpcname" {
 }
 
 output "vpc_id" {
-  value = module.vpccreation.vpcname.id
+  value = module.vpccreation.vpc_id
 
 }
 

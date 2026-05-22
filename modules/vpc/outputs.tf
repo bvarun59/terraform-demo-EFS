@@ -1,5 +1,6 @@
 output "vpcname" {
   value = aws_vpc.terraform_vpc.id
+  
 }
 
 output "vpc_id" {
