@@ -14,7 +14,7 @@ resource "aws_security_group_rule" "ingressrule" {
   from_port         = 80
   to_port           = 80
   protocol          = "http"
-  cidr_blocks       = "0.0.0.0/0"
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.EFSSG.id
 }
 
@@ -23,6 +23,7 @@ resource "aws_security_group_rule" "egressrule" {
   to_port           = 0
   protocol          = "-1"
   from_port         = 0
+  cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.EFSSG.id
 }
 

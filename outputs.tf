@@ -4,7 +4,7 @@ output "vpcname" {
 
 output "vpc_id" {
   value = module.vpccreation.vpcname.id
-  
+
 }
 
 output "subnet1" {
