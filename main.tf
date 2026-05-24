@@ -41,7 +41,11 @@ module "ec2Creation2" {
 
 }
 
-
+module "nat" {
+  source = "./modules/nat"
+  vpc_id = module.vpccreation.vpc_id
+  
+}
 
 
 
