@@ -9,3 +9,4 @@ variable "ms2az" {}
 variable "ms2name" {}
 variable "mRT" {}
 variable "mRTallowpublic" {}
+variable "nat" {}

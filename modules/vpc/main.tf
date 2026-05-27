@@ -43,21 +43,21 @@ resource "aws_subnet" "terraform_s2" {
 }
 
 #Create a Public Route Table for above vpc id and add routes
-/*
-resource "aws_route_table" "terraform_RT" {
-  vpc_id = aws_vpc.terraform_vpc.id
 
-  route {
-    cidr_block = var.mRTallowpublic
-    gateway_id = aws_internet_gateway.terraform_igw.id
-  }
+# resource "aws_route_table" "terraform_RT" {
+#   vpc_id = aws_vpc.terraform_vpc.id
 
-  tags = {
-    Name = var.mRT
-  }
-} 
+#   route {
+#     cidr_block = var.mRTallowpublic
+#     gateway_id = aws_internet_gateway.terraform_igw.id
+#   }
 
-*/
+#   tags = {
+#     Name = var.mRT
+#   }
+# } 
+
+
 
 #Create a Private Route Table for above vpc id and add routes
 
@@ -67,6 +67,7 @@ resource "aws_route_table" "terraform_RT" {
   route {
     cidr_block = var.mRTallowpublic
    # gateway_id = aws_internet_gateway.terraform_igw.id
+   nat_gateway_id = var.nat
    # not adding this beacuse its private Route Table
   }
 

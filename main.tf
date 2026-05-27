@@ -12,6 +12,7 @@ module "vpccreation" {
   ms2name        = var.gs2name
   mRT            = var.gRT
   mRTallowpublic = var.gRTallowpublic
+  nat            = module.nat.nat
 }
 
 
@@ -42,8 +43,9 @@ module "ec2Creation2" {
 }
 
 module "nat" {
-  source = "./modules/nat"
-  vpc_id = module.vpccreation.vpc_id
+  source     = "./modules/nat"
+  vpc_id     = module.vpccreation.vpc_id
+  RouteTable = module.vpccreation.RouteTable
 
 }
 
