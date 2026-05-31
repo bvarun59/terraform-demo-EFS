@@ -44,7 +44,7 @@ variable "gRTallowpublic" {
 }
 
 variable "gamiid" {
-  default = "ami-0236922087fa98b6e"
+  default = "ami-0685bcc683dadb6b9"
   type    = string
 }
 variable "ginstatype" {
