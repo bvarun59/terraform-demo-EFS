@@ -42,6 +42,19 @@ module "ec2Creation2" {
 
 }
 
+module "ec2Creation3" {
+  source           = "./modules/ec2"
+  mamiid           = var.gamiid
+  minstatype       = var.ginstatype
+  miamprofile      = var.giamprofile
+  subnet_id        = module.vpccreation.subnet2id
+  instancename     = "thirdserver"
+  vpc_id           = module.vpccreation.vpc_id
+  EFSsecuritygroup = "ec22"
+
+}
+
+
 module "nat" {
   source     = "./modules/nat"
   vpc_id     = module.vpccreation.vpc_id
