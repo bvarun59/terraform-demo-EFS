@@ -10,10 +10,37 @@ resource "aws_security_group" "EFSSG" {
  }
 
 
-resource "aws_security_group_rule" "ingressrule" {
+resource "aws_security_group_rule" "ingressrulehttp" {
   type              = "ingress"
   from_port         = 80
   to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.EFSSG.id
+}
+
+resource "aws_security_group_rule" "ingressrulenodeexporter" {
+  type              = "ingress"
+  from_port         = 9100
+  to_port           = 9100
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.EFSSG.id
+}
+
+resource "aws_security_group_rule" "ingressruleprometheus" {
+  type              = "ingress"
+  from_port         = 9090
+  to_port           = 9090
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.EFSSG.id
+}
+
+resource "aws_security_group_rule" "ingressrulegrafana" {
+  type              = "ingress"
+  from_port         = 3000
+  to_port           = 3000
   protocol          = "tcp"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.EFSSG.id

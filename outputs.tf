@@ -48,3 +48,9 @@ output "ec2Creation2" {
   value = module.ec2Creation2.moutputpublicip
 
 }
+
+output "ec2Creation3" {
+  value = module.ec2Creation3.moutputpublicip
+
+}
+

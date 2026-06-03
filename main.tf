@@ -50,7 +50,7 @@ module "ec2Creation3" {
   subnet_id        = module.vpccreation.subnet2id
   instancename     = "thirdserver"
   vpc_id           = module.vpccreation.vpc_id
-  EFSsecuritygroup = "ec22"
+  EFSsecuritygroup = "ec23"
 
 }
 
