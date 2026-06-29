@@ -24,7 +24,7 @@ module "ec2Creation1" {
   minstatype       = var.ginstatype
   miamprofile      = var.giamprofile
   subnet_id        = module.vpccreation.subnet1id
-  instancename     = "firstserver"
+  instancename     = "cp"
   vpc_id           = module.vpccreation.vpc_id
   EFSsecuritygroup = "ec21"
 }
@@ -36,7 +36,7 @@ module "ec2Creation2" {
   minstatype       = var.ginstatype
   miamprofile      = var.giamprofile
   subnet_id        = module.vpccreation.subnet2id
-  instancename     = "secondserver"
+  instancename     = "worker1"
   vpc_id           = module.vpccreation.vpc_id
   EFSsecuritygroup = "ec22"
 
@@ -48,7 +48,7 @@ module "ec2Creation3" {
   minstatype       = var.ginstatype
   miamprofile      = var.giamprofile
   subnet_id        = module.vpccreation.subnet2id
-  instancename     = "thirdserver"
+  instancename     = "worker2"
   vpc_id           = module.vpccreation.vpc_id
   EFSsecuritygroup = "ec23"
 
