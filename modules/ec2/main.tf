@@ -8,9 +8,13 @@ resource "aws_security_group" "EFSSG" {
     cidr_blocks = [ "0.0.0.0/0" ]
     description = "http"
     from_port = 80
-    protocol = "http"
+    protocol = "tcp"
   #  security_groups = [ "value" ]
     to_port = 80
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    security_groups  = []
+    self             = false
   },
    {
       description = "SSH"
@@ -18,6 +22,10 @@ resource "aws_security_group" "EFSSG" {
       to_port     = 22
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false      
     },
      {
       description = "app port"
@@ -25,6 +33,10 @@ resource "aws_security_group" "EFSSG" {
       to_port     = 5000
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false    
     },
      {
       description = "https"
@@ -32,6 +44,10 @@ resource "aws_security_group" "EFSSG" {
       to_port     = 443
       protocol    = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = []
+      prefix_list_ids  = []
+      security_groups  = []
+      self             = false      
     }
    ]
 
@@ -41,8 +57,11 @@ resource "aws_security_group" "EFSSG" {
     description = "allow to public from inside"
     from_port = 0
     protocol = "-1"
-    self = false
     to_port = 0
+    ipv6_cidr_blocks = []
+    prefix_list_ids  = []
+    security_groups  = []
+    self             = false    
   }
    ]
   tags = {
